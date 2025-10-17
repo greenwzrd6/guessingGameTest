@@ -79,8 +79,10 @@ public class Guesser
       {
         System.out.println("You have to write T or F...");
       }
+
     }
     while (true);
+
     // When you have gotten a valid reply, return it.
     return reply;
   }
@@ -99,7 +101,7 @@ public class Guesser
       System.out.println("Is the number less than or equal to " + middle + "?");
       String reply = getReply();
 
-      if ("T".equals(reply))
+      if ("t".equalsIgnoreCase(reply))
       {
         // The number is less than or equal to middle
         // so we move down high to middle
@@ -111,6 +113,7 @@ public class Guesser
         // so we move up low to middle + 1
         low = middle + 1;
       }
+
       i++; // One more guess!
     }
 
