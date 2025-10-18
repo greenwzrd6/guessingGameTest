@@ -16,9 +16,15 @@ else
   echo "Folder already exists, continuing"
 fi
 
-if [ ! -f "$DIR/GuessingGame.java" ] && [ ! -f "$DIR/Guesser.java" ]
+#added so that the package declaration gets removed by not reading the first line
+#then copying the read file into a new file and then changing it name to its original name
+if [ ! -f "GuessingGame.java" ] && [ ! -f "Guesser.java" ]
 then
   cp "se/yrgo/game/GuessingGame.java" "se/yrgo/game/Guesser.java" "$DIR"
+  for file in "$DIR/GuessingGame.java" "$DIR/Guesser.java"
+  do
+    tail -n +2 "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+  done
   echo "Copied files to $DIR"
 else
   echo "Files already exist, continuing"
@@ -29,6 +35,8 @@ cd "$DIR"
 echo "Running game from $(pwd)"
 
 echo "Compiling script:"
+
+javac GuessingGame.java
 
 #decided to create an array of dots and then animate a countdown
 #to make the script look a little more fun
