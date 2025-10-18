@@ -1,10 +1,13 @@
 #!/bin/bash
 
+#meclaring variables
 NAME="David_Lindberg"
 DIR="${NAME}_labb"
 
 echo "${NAME}'s program"
 
+#made an if statement for making the dir and copying the files
+#incase they already exist 
 if [ ! -d "$DIR" ]
 then
   mkdir "$DIR"
@@ -24,3 +27,22 @@ fi
 cd "$DIR"
 
 echo "Running game from $(pwd)"
+
+echo "Compiling script:"
+
+#decided to create an array of dots and then animate a countdown
+#to make the script look a little more fun
+
+dots=("" "." ".." "...")
+
+for i in {3..1}
+do
+  for d in "${dots[@]}"
+  do
+    echo -ne "$i$d\r"
+    sleep 0.3
+  done
+  echo -ne "    \r"
+done
+
+echo "Running game"
